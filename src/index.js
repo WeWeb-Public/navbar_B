@@ -1,6 +1,6 @@
 import section from './section.vue'
 
-const name = "feature_D";
+const name = "navbar_B";
 
 const addComponent = function () {
     if (window.vm) {
