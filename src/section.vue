@@ -179,9 +179,9 @@ export default {
 	},
 	mounted: function () {
 
-		wwLib.wwNavbar.registerHeightEvent(function (height) {
-			console.log("NEW HEIGHT : ", height)
-		})
+		wwLib.$on('wwNavbar:height', function (newHeight) {
+			console.log("NEW HEIGHT : ", newHeight)
+		});
 
 		this.init();
 
