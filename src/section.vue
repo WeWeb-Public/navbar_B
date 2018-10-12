@@ -48,7 +48,7 @@
 export default {
 	name: "navbar_B",
 	props: {
-		section: Object
+		sectionRef: Object
 	},
 	data() {
 		return {
@@ -57,6 +57,10 @@ export default {
 		}
 	},
 	computed: {
+		section() {
+			//return this.sectionRef.wwGet();
+			return this.$store.state.sections[this.sectionRef.id];
+		},
 		getNavbarBHeight() {
 			return {
 				height: this.section.data.style.anim.type == 'fixed' ? this.navbarDesktopHeight + 'px' : ''
