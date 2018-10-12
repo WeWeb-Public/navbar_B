@@ -3,37 +3,37 @@
 	<div class="navbar_B" v-bind:style="getNavbarBHeight">
 
 		<div class="navbar-desktop" v-bind:class="[section.data.style.anim.type, navbarDesktopActive ? 'active' : '', section.data.style.shadow]" v-bind:style="getNavbarBorders">
-			<wwObject class="background" v-bind:ww-object="section.data.background" ww-category="background">
+			<wwObject class="background" v-bind:ww-object-ref="section.data.background" ww-category="background">
 			</wwObject>
 
 			<div class="content">
 				<div class="left-items">
 					<div class="link-container" v-for='link in section.data.links' v-bind:key='link.uniqueId'>
-						<wwObject class="link" v-bind:ww-object="link">
+						<wwObject class="link" v-bind:ww-object-ref="link">
 						</wwObject>
 						<div class="sublinks-container" v-if="link.data.isMenu">
-							<wwObject class="background" v-bind:ww-object="section.data.background" ww-category="background">
+							<wwObject class="background" v-bind:ww-object-ref="section.data.background" ww-category="background">
 							</wwObject>
 							<div class="sublink-container" v-for='sublink in link.data.links' v-bind:key='sublink.uniqueId'>
-								<wwObject class="sublink" v-bind:ww-object="sublink">
+								<wwObject class="sublink" v-bind:ww-object-ref="sublink">
 								</wwObject>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="center-items">
-					<wwObject class="logo" v-bind:ww-object="section.data.logo" ww-fixed-ratio="50">
+					<wwObject class="logo" v-bind:ww-object-ref="section.data.logo" ww-fixed-ratio="50">
 					</wwObject>
 				</div>
 				<div class="right-items">
-					<wwObject class="text" v-bind:ww-object="section.data.text">
+					<wwObject class="text" v-bind:ww-object-ref="section.data.text">
 					</wwObject>
 				</div>
 			</div>
 		</div>
 
 		<div class="navbar-mobile">
-			<wwObject class="background" v-bind:ww-object="section.data.background" ww-category="background">
+			<wwObject class="background" v-bind:ww-object-ref="section.data.background" ww-category="background">
 			</wwObject>
 
 			<div class="content">
