@@ -1,191 +1,191 @@
 <template>
 
-	<div class="navbar_B" v-bind:style="getNavbarBHeight">
+    <div class="navbar_B" v-bind:style="getNavbarBHeight">
 
-		<div class="navbar-desktop" v-bind:class="[section.data.style.anim.type, navbarDesktopActive ? 'active' : '', section.data.style.shadow]" v-bind:style="getNavbarBorders">
-			<wwObject class="background" v-bind:ww-object="section.data.background" ww-category="background">
-			</wwObject>
+        <div class="navbar-desktop" v-bind:class="[section.data.style.anim.type, navbarDesktopActive ? 'active' : '', section.data.style.shadow]" v-bind:style="getNavbarBorders">
+            <wwObject class="background" v-bind:ww-object="section.data.background" v-bind:section="section" ww-category="background">
+            </wwObject>
 
-			<div class="content">
-				<div class="left-items">
-					<div class="link-container" v-for='link in section.data.links' v-bind:key='link.uniqueId'>
-						<wwObject class="link" v-bind:ww-object="link">
-						</wwObject>
-						<div class="sublinks-container" v-if="link.data.isMenu">
-							<wwObject class="background" v-bind:ww-object="section.data.background" ww-category="background">
-							</wwObject>
-							<div class="sublink-container" v-for='sublink in link.data.links' v-bind:key='sublink.uniqueId'>
-								<wwObject class="sublink" v-bind:ww-object="sublink">
-								</wwObject>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="center-items">
-					<wwObject class="logo" v-bind:ww-object="section.data.logo" ww-fixed-ratio="50">
-					</wwObject>
-				</div>
-				<div class="right-items">
-					<wwObject class="text" v-bind:ww-object="section.data.text">
-					</wwObject>
-				</div>
-			</div>
-		</div>
+            <div class="content">
+                <div class="left-items">
+                    <div class="link-container" v-for='link in section.data.links' v-bind:key='link.uniqueId'>
+                        <wwObject class="link" v-bind:ww-object="link" v-bind:section="section">
+                        </wwObject>
+                        <div class="sublinks-container" v-if="link.data.isMenu">
+                            <wwObject class="background" v-bind:ww-object="section.data.background" v-bind:section="section" ww-category="background">
+                            </wwObject>
+                            <div class="sublink-container" v-for='sublink in link.data.links' v-bind:key='sublink.uniqueId'>
+                                <wwObject class="sublink" v-bind:ww-object="sublink" v-bind:section="section">
+                                </wwObject>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="center-items">
+                    <wwObject class="logo" v-bind:ww-object="section.data.logo" v-bind:section="section" ww-fixed-ratio="50">
+                    </wwObject>
+                </div>
+                <div class="right-items">
+                    <wwObject class="text" v-bind:ww-object="section.data.text" v-bind:section="section">
+                    </wwObject>
+                </div>
+            </div>
+        </div>
 
-		<div class="navbar-mobile">
-			<wwObject class="background" v-bind:ww-object="section.data.background" ww-category="background">
-			</wwObject>
+        <div class="navbar-mobile">
+            <wwObject class="background" v-bind:ww-object="section.data.background" v-bind:section="section" ww-category="background">
+            </wwObject>
 
-			<div class="content">
-			</div>
-		</div>
+            <div class="content">
+            </div>
+        </div>
 
-	</div>
+    </div>
 
 </template>
 
 <script>
 export default {
-	name: "navbar_B",
-	props: {
-		section: Object
-	},
-	data() {
-		return {
-			navbarDesktopHeight: 70,
-			navbarDesktopActive: false
-		}
-	},
-	computed: {
-		getNavbarBHeight() {
-			return {
-				height: this.section.data.style.anim.type == 'fixed' ? this.navbarDesktopHeight + 'px' : ''
-			};
-		},
-		getNavbarBorders() {
-			const borders = this.section.data.style.borders;
-			if (!borders.length) {
-				return {};
-			}
-			return {
-				'border-top': borders[0].width + 'px ' + borders[0].style + ' ' + borders[0].color,
-				'border-right': borders[1].width + 'px ' + borders[1].style + ' ' + borders[1].color,
-				'border-bottom': borders[2].width + 'px ' + borders[2].style + ' ' + borders[2].color,
-				'border-left': borders[3].width + 'px ' + borders[3].style + ' ' + borders[3].color,
-			}
-		}
-	},
-	methods: {
-		init() {
-			this.section.data.dataMigrated = true;
-			console.log(this.section.data)
-			this.loadAnim();
-		},
-		migrateOldData() {
-			if (this.section.data.dataMigrated) {
-				return;
-			}
+    name: "navbar_B",
+    props: {
+        section: Object
+    },
+    data() {
+        return {
+            navbarDesktopHeight: 70,
+            navbarDesktopActive: false
+        }
+    },
+    computed: {
+        getNavbarBHeight() {
+            return {
+                height: this.section.data.style.anim.type == 'fixed' ? this.navbarDesktopHeight + 'px' : ''
+            };
+        },
+        getNavbarBorders() {
+            const borders = this.section.data.style.borders;
+            if (!borders.length) {
+                return {};
+            }
+            return {
+                'border-top': borders[0].width + 'px ' + borders[0].style + ' ' + borders[0].color,
+                'border-right': borders[1].width + 'px ' + borders[1].style + ' ' + borders[1].color,
+                'border-bottom': borders[2].width + 'px ' + borders[2].style + ' ' + borders[2].color,
+                'border-left': borders[3].width + 'px ' + borders[3].style + ' ' + borders[3].color,
+            }
+        }
+    },
+    methods: {
+        init() {
+            this.section.data.dataMigrated = true;
+            console.log(this.section.data)
+            this.loadAnim();
+        },
+        migrateOldData() {
+            if (this.section.data.dataMigrated) {
+                return;
+            }
 
-			this.section.data.style = this.section.data.style || {};
+            this.section.data.style = this.section.data.style || {};
 
-			//Migrate animation
-			this.section.data.style.anim = {
-				type: this.section.data.navbarAnim == 'ww-dropdown' ? 'dropdown' : 'fixed',
-				index: this.section.data.navbarAnimSectionIndex || 0
-			}
+            //Migrate animation
+            this.section.data.style.anim = {
+                type: this.section.data.navbarAnim == 'ww-dropdown' ? 'dropdown' : 'fixed',
+                index: this.section.data.navbarAnimSectionIndex || 0
+            }
 
-			//Migrate Shadow 
-			this.section.data.style.shadow = this.section.data.navbarShadow || "";
+            //Migrate Shadow 
+            this.section.data.style.shadow = this.section.data.navbarShadow || "";
 
-			//Migrate Borders 
-			this.section.data.style.borders = this.section.data.borders || null;
+            //Migrate Borders 
+            this.section.data.style.borders = this.section.data.borders || null;
 
-			if (wwLib.$store.state.design.info.navbar) {
-				//Migrate Links
-				//(Keep only links that are not hidden)
-				this.section.data.links = wwLib.$store.state.design.info.navbar.links.filter(link => { return !link.hidden; });
-				this.section.data.links = this.section.data.links.filter(link => { return !this.section.data.hiddenLinks[link.uniqueId]; });
+            if (wwLib.$store.state.design.info.navbar) {
+                //Migrate Links
+                //(Keep only links that are not hidden)
+                this.section.data.links = wwLib.$store.state.design.info.navbar.links.filter(link => { return !link.hidden; });
+                this.section.data.links = this.section.data.links.filter(link => { return !this.section.data.hiddenLinks[link.uniqueId]; });
 
-				//Do the same for sublinks in menus
-				for (let link of this.section.data.links) {
-					if (link.data.isMenu) {
-						link.data.links = link.data.links.filter(link => { return !link.hidden; });
-						link.data.links = link.data.links.filter(link => { return !this.section.data.hiddenLinks[link.uniqueId]; });
-					}
-				}
+                //Do the same for sublinks in menus
+                for (let link of this.section.data.links) {
+                    if (link.data.isMenu) {
+                        link.data.links = link.data.links.filter(link => { return !link.hidden; });
+                        link.data.links = link.data.links.filter(link => { return !this.section.data.hiddenLinks[link.uniqueId]; });
+                    }
+                }
 
-				//Migrate Right Text
-				this.section.data.text = wwLib.$store.state.design.info.navbar.data.text;
+                //Migrate Right Text
+                this.section.data.text = wwLib.$store.state.design.info.navbar.data.text;
 
-				//Migrate Logo
-				this.section.data.logo = wwLib.$store.state.design.info.navbar.logo;
-			}
+                //Migrate Logo
+                this.section.data.logo = wwLib.$store.state.design.info.navbar.logo;
+            }
 
-			//Delete unused keys
-			delete this.section.data.hiddenLinks;
-			delete this.section.data.isNew;
-			delete this.section.data.logoSmall;
-			delete this.section.data.menus;
-			delete this.section.data.navbarAnim;
-			delete this.section.data.navbarAnimSectionIndex;
-			delete this.section.data.borders;
-			delete this.section.data.navbarShadow;
-			delete this.section.data.textColor;
-			delete this.section.data.textSize;
-		},
-		loadAnim() {
-			this.clearAnims();
+            //Delete unused keys
+            delete this.section.data.hiddenLinks;
+            delete this.section.data.isNew;
+            delete this.section.data.logoSmall;
+            delete this.section.data.menus;
+            delete this.section.data.navbarAnim;
+            delete this.section.data.navbarAnimSectionIndex;
+            delete this.section.data.borders;
+            delete this.section.data.navbarShadow;
+            delete this.section.data.textColor;
+            delete this.section.data.textSize;
+        },
+        loadAnim() {
+            this.clearAnims();
 
-			let navbarDesktop = this.$el.querySelector('.navbar-desktop');
+            let navbarDesktop = this.$el.querySelector('.navbar-desktop');
 
-			//Init dropdown anim
-			if (this.section.data.style.anim.type == 'dropdown') {
-				window.addEventListener('scroll', this.onScrollDropDown);
-				navbarDesktop.classList.add('dropdown');
+            //Init dropdown anim
+            if (this.section.data.style.anim.type == 'dropdown') {
+                window.addEventListener('scroll', this.onScrollDropDown);
+                navbarDesktop.classList.add('dropdown');
 
-				//Force one scroll event to be sure that navbar will show when page does not load on top
-				this.onScrollDropDown();
-			}
-			else {
-				wwLib.wwNavbar.updateHeight(this.navbarDesktopHeight);
-			}
-		},
-		clearAnims() {
-			let navbarDesktop = this.$el.querySelector('.navbar-desktop');
+                //Force one scroll event to be sure that navbar will show when page does not load on top
+                this.onScrollDropDown();
+            }
+            else {
+                wwLib.wwNavbar.updateHeight(this.navbarDesktopHeight);
+            }
+        },
+        clearAnims() {
+            let navbarDesktop = this.$el.querySelector('.navbar-desktop');
 
-			//Clean dropdown anim
-			window.removeEventListener('scroll', this.onScrollDropDown);
-			navbarDesktop.classList.remove('dropdown');
-		},
-		onScrollDropDown() {
-			let targetSection = document.body.querySelector('[section-index="' + this.section.data.style.anim.index + '"]');
+            //Clean dropdown anim
+            window.removeEventListener('scroll', this.onScrollDropDown);
+            navbarDesktop.classList.remove('dropdown');
+        },
+        onScrollDropDown() {
+            let targetSection = document.body.querySelector('[section-index="' + this.section.data.style.anim.index + '"]');
 
-			//Calculate section top relative to screen view
-			const top = (window.pageYOffset || document.documentElement.scrollTop) - (document.documentElement.clientTop || 0);
+            //Calculate section top relative to screen view
+            const top = (window.pageYOffset || document.documentElement.scrollTop) - (document.documentElement.clientTop || 0);
 
-			const isPageTop = (window.pageYOffset || document.documentElement.scrollTop) == 0;
-			const isAboveSection = targetSection.offsetTop - top - this.navbarDesktopHeight - 20 <= 0;
+            const isPageTop = (window.pageYOffset || document.documentElement.scrollTop) == 0;
+            const isAboveSection = targetSection.offsetTop - top - this.navbarDesktopHeight - 20 <= 0;
 
-			this.navbarDesktopActive = !isPageTop && isAboveSection;
+            this.navbarDesktopActive = !isPageTop && isAboveSection;
 
-			wwLib.wwNavbar.updateHeight(this.navbarDesktopActive ? this.navbarDesktopHeight : 0);
-		}
-	},
-	beforeDestroy: function () {
-		this.clearAnims();
-	},
-	created() {
-		this.migrateOldData();
-	},
-	mounted: function () {
+            wwLib.wwNavbar.updateHeight(this.navbarDesktopActive ? this.navbarDesktopHeight : 0);
+        }
+    },
+    beforeDestroy: function () {
+        this.clearAnims();
+    },
+    created() {
+        this.migrateOldData();
+    },
+    mounted: function () {
 
-		wwLib.$on('wwNavbar:height', function (newHeight) {
-			console.log("NEW HEIGHT : ", newHeight)
-		});
+        wwLib.$on('wwNavbar:height', function (newHeight) {
+            console.log("NEW HEIGHT : ", newHeight)
+        });
 
-		this.init();
+        this.init();
 
-	}
+    }
 };
 </script>
 
