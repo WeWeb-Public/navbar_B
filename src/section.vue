@@ -1,6 +1,9 @@
 <template>
 
     <div class="navbar_B" v-bind:style="getNavbarBHeight">
+        <!-- wwManager:start -->
+        <wwSectionEditMenu v-bind:section="section"></wwSectionEditMenu>
+        <!-- wwManager:end -->
 
         <div class="navbar-desktop" v-bind:class="[section.data.style.anim.type, navbarDesktopActive ? 'active' : '', section.data.style.shadow]" v-bind:style="getNavbarBorders">
             <wwObject class="background" v-bind:ww-object="section.data.background" v-bind:section="section" ww-category="background">
