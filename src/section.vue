@@ -81,7 +81,7 @@ export default {
     methods: {
         init() {
             this.section.data.dataMigrated = true;
-            console.log(this.section.data)
+
             this.loadAnim();
         },
         migrateOldData() {
