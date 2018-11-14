@@ -2,7 +2,7 @@
 
     <div class="navbar_B" v-bind:style="getNavbarBHeight">
         <!-- wwManager:start -->
-        <wwSectionEditMenu v-bind:section="section"></wwSectionEditMenu>
+        <wwSectionEditMenu v-bind:sectionCtrl="sectionCtrl"></wwSectionEditMenu>
         <!-- wwManager:end -->
 
         <div class="navbar-desktop" v-bind:class="[section.data.style.anim.type, navbarDesktopActive ? 'active' : '', section.data.style.shadow]" v-bind:style="getNavbarBorders">
@@ -55,12 +55,14 @@ export default {
     },
     data() {
         return {
-            section: this.sectionCtrl.get(),
             navbarDesktopHeight: 70,
             navbarDesktopActive: false
         }
     },
     computed: {
+        section() {
+            return this.sectionCtrl.get();
+        },
         getNavbarBHeight() {
             return {
                 height: this.section.data.style.anim.type == 'fixed' ? this.navbarDesktopHeight + 'px' : ''
